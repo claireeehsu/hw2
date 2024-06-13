@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap')
+//*代表所有的html的標籤指令，都要依照這樣格式進行
+
+//指定顏色變數
+$colorBlueRoofLight: #6fc5ff
+$colorBlueRoofDark: #0058ff
+
+$colorGreyLight: #fafaf5
+$colorGreyNormal: #e3e2cf
+$colorGreyDark: #bebdaf
+$colorBackground: #2C2F36
+
+$colorShadowBlue: #7cb1ff
+$colorShadowBlueLight: #8dc9fc
+
+$colorWindowGrey: #534d4d
+
+
+//定義漸層
+$sceneGradient: linear-gradient(#ccd5ae,#f8ad9d)
+$sceneGradient2: linear-gradient(#5e548e,#a2d2ff)
+
+//設定元件的寬與高
+@mixin size($w,$h:$w,$bdrs:0)
+    width: $w
+    height: $h
+    border-radius: $bdrs
+
+//設定下層的物件置中
+@mixin flex($j:center,$a:center)
+    display: flex
+    justify-content: $j //主軸線:左右
+    align-items: $a  //副軸線:上下
+
+//設定物件的位置，靠左多少px，靠上多少px
+@mixin abpos($l:initial,$t:initial)
+    position: absolute
+    left: $l
+    top: $t
+//畫圓弧的方框，可以直接畫圓
+@mixin bdrsRect($w,$h:$w)
+    width: $w
+    height: $h
+    border-radius: $h/2
+//=================================
+@mixin person($x,$y,$s)
+        +size(300px,350px,1000px)
+        +abpos($x,$y)
+        background: $sceneGradient
+        //border: solid 1px black
+        scale:$s
+        .eyes
+            .Reye
+                +bdrsRect(50px)
+                +abpos(200px,70px) 
+                background-color: #fff 
+                border: solid 1px black              
+            .Leye
+                +bdrsRect(50px)
+                +abpos(100px,70px)
+                background-color: #fff 
+                border: solid 1px black
+        .a
+            .r
+                +bdrsRect(40px)
+                +abpos(200px,70px) 
+                background-color: black
+            .y
+                +bdrsRect(40px)
+                +abpos(100px,70px) 
+                background-color: black   
+        .nose
+            width: 0
+            height: 0
+            border: 50px solid
+            border-color: transparent transparent #fbb034 transparent 
+            +abpos(125px,80px)
+        .mouth
+            +size(80px,60px,40px)
+            +abpos(130px,200px)
+            background-color: #f07167
+
+@mixin person_active($x,$y)
+        //+abops($x,$y)
+        .nose
+            +abpos(200px,70px)
+            transition:1s
+        .mouth
+            +size(100px,40px,20px)
+        eyes
+            .Reye
+                +bdrsRect(40px)
+                +abpos(250px,80px)
+            .Leye
+                +bdrsRect(40px)
+                +abpos(150px,80px)
+
+//=================================
+
+*
+    font-family: "Playfair Display","微軟正黑體"
+    //border: solid 2px black  //加上框線，實心線，2px線條粗細，黑
+html,body
+    +size(100%)
+    position: relative
+    +flex()  //讓下一層物件置中
+    .box
+        +size(600px,400px,100px)   //寬高，四個角的圓弧
+        +abpos(200px,120px)     //座位位置     
+        background: $sceneGradient2   //背景顏色        
+        .box1
+            +bdrsRect(200px)  //畫圓，直徑為200px
+            +abpos(30px,40px)
+            +flex()
+            background-color: #f5ebe0
+            h4
+                font-size: 30px   //文字大小
+                letter-spacing: 1px  //字與字間的間距
+                font-weight: 800    //字的粗細大小
+                line-height: 35px   //一行的高度
+                opacity: 0.6
+                color: red
+        .box2
+            +size(200px,50px)
+            +abpos(280px,40px)
+            background-color: #e3d5ca
+            h4  
+                font-size: 25px
+                letter-spacing: 1px
+                font-weight: 900
+                line-height: 35px
+                padding: 10px 0px
+                margin: 0 10px
+                color: #780000
+                opacity: 1
+        .box3
+            +size(200px,50px)
+            +abpos(280px,105px)
+            background-color: #e3d5ca
+            h4  
+                font-size: 25px
+                letter-spacing: 1px
+                font-weight: 900
+                line-height: 35px
+                padding: 10px 0px
+                margin: 0 10px
+                color: #780000
+                opacity: 1
+        .box4
+            +size(200px,50px)
+            +abpos(280px,170px)
+            background-color: #e3d5ca
+            h4  
+                font-size: 25px
+                letter-spacing: 1px
+                font-weight: 900
+                line-height: 35px
+                padding: 10px 0px
+                margin: 0 10px
+                color: #780000
+                opacity: 1
+        .box5
+            +size(200px,50px)
+            +abpos(280px,235px)
+            background-color: #e3d5ca
+            h4  
+                font-size: 25px
+                letter-spacing: 1px
+                font-weight: 900
+                line-height: 35px
+                padding: 10px 0px
+                margin: 0 10px
+                color: #780000
+                opacity: 1   
+        .box6
+            +size(200px,50px)
+            +abpos(280px,300px)
+            background-color: #e3d5ca
+            h4  
+                font-size: 25px
+                letter-spacing: 1px
+                font-weight: 900
+                line-height: 35px
+                padding: 10px 0px
+                margin: 0 10px
+                color: #780000
+                opacity: 1       
+    
+    .box   //在box物件範圍內滑入滑鼠游標
+        .box1:hover
+            h4
+             opacity: 0
+             transition: 0.2s 0.5s //延遲0.5秒後，在做文字消失
+    .box
+        .box2:hover
+            h4
+             opacity: 0
+             transition: 0.5s 0.5s
+    .box
+        .box3:hover
+            h4
+            opacity: 0
+            transition: 0.5s 0.5s
+    .box
+        .box4:hover
+            h4
+            opacity: 0
+            transition: 0.5s 0.5s
+    .box
+        .box5:hover
+            h4
+            opacity: 0
+            transition: 0.5s 0.5s
+    .box
+        .box6:hover
+            h4
+            opacity: 0
+            transition: 0.5s 0.5s
+    .box:active  //在.box物件按下滑鼠
+        //.box2
+            h4
+            opacity: 0
+            //transition: 0.5s 
+        .box1
+            h4
+            opacity: 0
+            transition: 3s 3s
+        
+    .person1
+        
+        +person(550px,380px,0.5)
+    .person        
+        +person(400px,600px,1)
+    .person2
+        +person(100px,500px,0.7)
+
+    .person:active
+        +person_active(200px,200px)
+    .person1:active
+        +person_active(200px,200px)
+    .person2:active
+        +person_active(100px,200px)
+
+    .youtubeDisplay
+        +size(800px,400px)  //要播放的寬高
+        +abpos(800px,100px)  //位置
+    .imageDisplay
+        +size(100px,100px)  //要播放的寬高
+        +abpos(18px,10px)  //位置
+        .img1
+            display: cover
+    .h5pDisplay
+        +size(800px,400px)
+        +abpos(800px,500px)
